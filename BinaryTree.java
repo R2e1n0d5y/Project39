@@ -1,8 +1,13 @@
 public class BinaryTree {
     public NodeSite root;
+    public NodeSite save;
 
     public void tampilanSoal(){
-        System.out.println(findKarakter().pertanyaan);
+        System.out.println(findSiteKarakter().pertanyaan);
+    }
+
+    public String cekJawaban(){
+        return findSiteKarakter().jawaban;
     }
 
     public void tampilanSiteVisit(){//konsep aja, kalau sempet tambahin
@@ -10,7 +15,7 @@ public class BinaryTree {
     }
 
     public void cekFuture(){
-        NodeSite current = findKarakter();
+        NodeSite current = findSiteKarakter();
         if(current.left==null) System.out.println("Jalan ke kiri adalah zonk");
         else if(current.left!=null) System.out.println("jalan ke kiri adalah "+current.left.name+" site");
         if(current.right==null) System.out.println("Jalan ke right adalah zonk");
@@ -18,15 +23,15 @@ public class BinaryTree {
     }
 
     public void showAnswer(){
-        System.out.println("bocoran nich, jawaban yang bener adalah : "+findKarakter().jawaban);
+        System.out.println("bocoran nich, jawaban yang bener adalah : "+findSiteKarakter().jawaban);
     }
 
     public void backToRoot(){
-        swap(findKarakter(), root);
+        swap(findSiteKarakter(), root);
     }
 
     public boolean cekBuku(){
-        if(findKarakter().bukuThere==null){
+        if(findSiteKarakter().bukuThere==null){
             return false;
         }
         else{
@@ -35,12 +40,23 @@ public class BinaryTree {
     }
 
     public void inBuku(){
-        NodeSite current = findKarakter();
+        NodeSite current = findSiteKarakter();
         current.karakter.buku.push(current.bukuThere);
+        current.karakter.jumlahBuku++;
+    }
+
+    public NodeBuku outBuku(){
+        NodeSite current = findSiteKarakter();
+        current.karakter.jumlahBuku--;
+        return current.karakter.buku.pop();
+    }
+
+    public int totalBuku(){
+        return findSiteKarakter().karakter.jumlahBuku;
     }
 
     public boolean goRight(){
-        NodeSite current = findKarakter();
+        NodeSite current = findSiteKarakter();
         if(current.right!=null){
             swap(current, current.right);
             return true;
@@ -51,7 +67,7 @@ public class BinaryTree {
     }
 
     public boolean goLeft(){
-        NodeSite current = findKarakter();
+        NodeSite current = findSiteKarakter();
         if(current.left!=null){
             swap(current, current.left);
             return true;
@@ -62,8 +78,8 @@ public class BinaryTree {
     }
 
     public boolean cekSiteLast(){ // mengecek apakah itu node yg menuju ending atau tidak
-        NodeSite current = findKarakter();
-        if(current.left==current.right){
+        NodeSite current = findSiteKarakter();
+        if(current.left==current.right&current.left!=null&&current.right!=null){
             return true;
         }
         else{
@@ -71,21 +87,20 @@ public class BinaryTree {
         }
     }
 
-    public NodeSite findKarakter (){
-        NodeSite save=null, current=root;
-        find(current, save);
+    public NodeSite findSiteKarakter (){
+        find(root);
         return save;
     }
 
-    public void find (NodeSite current, NodeSite save){
+    public void find (NodeSite current){
         if(current!=null){
             if(current.karakter.name != " "){
                 save=current;
                 return;
             }
             if(save==null){
-                find(current.left, save);
-                find(current.right, save);
+                find(current.left);
+                find(current.right);
             }
         }   
     }
