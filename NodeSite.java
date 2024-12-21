@@ -1,12 +1,20 @@
+// NodeKarakter.java
 public class NodeSite {
-    String nama;
+    String name;
     String pertanyaan;
     String jawaban;
+    NodeBuku bukuThere;
+    NodeKarakter karakter;
 
-    public NodeSite(String nama, String pertanyaan, String jawaban){
-        this.nama = nama;
+    NodeSite right;
+    NodeSite left;
+
+    // Constructor
+    public NodeSite(String name, String pertanyaan, String jawaban, NodeBuku bukuThere) {
+        this.name = name;
         this.pertanyaan = pertanyaan;
         this.jawaban = jawaban;
+        this.bukuThere = bukuThere;
+        this.karakter= new NodeKarakter(" ", 0, " ", " ", 0, " ");
     }
-    
 }

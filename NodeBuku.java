@@ -1,13 +1,15 @@
 public class NodeBuku {
     String nama;
     String ability;
-    String wordl;
+    String world;
     String site;
+    NodeBuku next;
 
-    public NodeBuku(String nama, String ability, String wordl, String site){
+    // Konstruktor
+    public NodeBuku(String nama, String ability, String world, String site) {
         this.nama = nama;
         this.ability = ability;
-        this.wordl = wordl;
+        this.world = world;
         this.site = site;
     }
 }

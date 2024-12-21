@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class MainAdi {
+public class Main {
     public static void textCenter(String text){
         String spasiKiri = " ".repeat((75-text.length())/2);
         String spasiKanan = " ".repeat(75-((75-text.length())/2)-text.length());
@@ -132,30 +132,5 @@ public class MainAdi {
         queue.enqueue(world1);
         queue.enqueue(world2);
         queue.enqueue(world3);
-
-        NodeKarakter karakter;
-        ll.bubbleSort();
-        System.out.println(garis);
-        System.out.println(spasi);
-        textCenter("Pilih Karakter Anda");
-        System.out.println(spasi);
-        System.out.println(garis);
-        ll.display();
-        System.out.println(garis);
-        while (true) {
-            textLeft("Masukkan nomor karakter yang anda pilih : ");
-            System.out.print("|=| ");
-            int memilih  = inputUser.nextInt();
-            if(memilih>0 && memilih <6){
-                karakter=ll.getKarakter(memilih); 
-                queue.first.tree.root.karakter=karakter;
-                break;
-            }
-            else{
-                textLeft("format jabawan yang anda masukkan salah");
-                textLeft("Silahkan masukkan ulang dengan format 1/2/3/4/5");
-            }
-        }
-        inputUser.close();
     }
 }
