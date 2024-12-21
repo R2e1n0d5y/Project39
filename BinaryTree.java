@@ -10,10 +10,6 @@ public class BinaryTree {
         return findSiteKarakter().jawaban;
     }
 
-    public void tampilanSiteVisit(){//konsep aja, kalau sempet tambahin
-
-    }
-
     public void cekFuture(){
         NodeSite current = findSiteKarakter();
         if(current.left==null) System.out.println("Jalan ke kiri adalah zonk");
@@ -30,6 +26,10 @@ public class BinaryTree {
         swap(findSiteKarakter(), root);
     }
 
+    public void tampilanEnding(){
+        System.out.println(findSiteKarakter().karakter.ending);
+    }
+
     public boolean cekBuku(){
         if(findSiteKarakter().bukuThere==null){
             return false;
@@ -43,6 +43,7 @@ public class BinaryTree {
         NodeSite current = findSiteKarakter();
         current.karakter.buku.push(current.bukuThere);
         current.karakter.jumlahBuku++;
+        current.bukuThere=null;
     }
 
     public NodeBuku outBuku(){
@@ -55,26 +56,14 @@ public class BinaryTree {
         return findSiteKarakter().karakter.jumlahBuku;
     }
 
-    public boolean goRight(){
+    public void goRight(){
         NodeSite current = findSiteKarakter();
-        if(current.right!=null){
-            swap(current, current.right);
-            return true;
-        }
-        else{
-            return false;
-        }
+        swap(current, current.right);
     }
 
-    public boolean goLeft(){
+    public void goLeft(){
         NodeSite current = findSiteKarakter();
-        if(current.left!=null){
-            swap(current, current.left);
-            return true;
-        }
-        else{
-            return false;
-        }
+        swap(current, current.left);
     }
 
     public boolean cekSiteLast(){ // mengecek apakah itu node yg menuju ending atau tidak
@@ -98,10 +87,8 @@ public class BinaryTree {
                 save=current;
                 return;
             }
-            if(save==null){
-                find(current.left);
-                find(current.right);
-            }
+            find(current.left);
+            find(current.right);
         }   
     }
 
